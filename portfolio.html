@@ -1,632 +1,896 @@
 <!DOCTYPE html>
-
 <html lang="en">
-
-
-
 <head>
-
     <meta charset="UTF-8">
-
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800&display=swap" rel="stylesheet">
-
-    <title>Portfolio - SHADOW</title>
-
+    <title>Skills - SHADOW</title>
     <style>
-
         * {
-
             margin: 0;
-
             padding: 0;
-
+            box-sizing: border-box;
         }
 
-
+        html {
+            scroll-behavior: smooth;
+        }
 
         body {
-
             font-family: 'Poppins', sans-serif;
-
-            max-height: 100vh;
-
-            background-color: #1F252E;
-
-        }
-
-
-
-        /*nav */
-
-        header {
-
-            padding: 1.7rem 1rem;
-
-            background-color: #fff;
-
-            display: flex;
-
-            justify-content: space-between;
-
-            max-width: 80%;
-
-            margin: auto;
-
-            align-items: center;
-
-            background-color: transparent;
-
-        }
-
-
-
-        .logo {
-
-            font-size: 1.3rem;
-
-            font-weight: 800;
-
-        }
-
-
-
-        .logo a {
-
+            background: linear-gradient(135deg, #1F252E 0%, #0f1419 100%);
             color: #fff;
-
-            text-decoration: none;
-
+            overflow-x: hidden;
+            position: relative;
         }
 
+        /* Animated background particles */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(circle at 20% 50%, rgba(0, 232, 248, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 80%, rgba(0, 232, 248, 0.08) 0%, transparent 50%),
+                radial-gradient(circle at 40% 20%, rgba(0, 232, 248, 0.05) 0%, transparent 50%);
+            animation: backgroundShift 15s ease-in-out infinite;
+            z-index: -1;
+            pointer-events: none;
+        }
 
+        @keyframes backgroundShift {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.8; }
+        }
+
+        /* Header with glassmorphism */
+        header {
+            padding: 1.2rem 2rem;
+            background: rgba(31, 37, 46, 0.7);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(0, 232, 248, 0.1);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        header:hover {
+            background: rgba(31, 37, 46, 0.85);
+            box-shadow: 0 8px 40px rgba(0, 232, 248, 0.2);
+        }
+
+        .SHADOW a {
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: #00E8F8;
+            text-decoration: none;
+            background: linear-gradient(135deg, #00E8F8, #00c2f8);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            transition: all 0.3s ease;
+        }
+
+        .SHADOW a:hover {
+            transform: scale(1.05);
+            text-shadow: 0 0 20px rgba(0, 232, 248, 0.5);
+        }
+
+        nav {
+            display: flex;
+            gap: 0.5rem;
+        }
 
         nav a {
-
             color: #fff;
-
             text-decoration: none;
-
-            font-size: .97rem;
-
-            font-weight: 600;
-
-            letter-spacing: .7px;
-
-            padding: 1rem;
-
-            padding: 0.4rem 1rem;
-
+            font-size: 0.95rem;
+            font-weight: 500;
+            letter-spacing: 0.5px;
+            padding: 0.6rem 1.2rem;
+            border-radius: 25px;
+            transition: all 0.3s ease;
+            position: relative;
         }
 
+        nav a::before {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(90deg, #00E8F8, #00c2f8);
+            transition: all 0.3s ease;
+            transform: translateX(-50%);
+        }
 
+        nav a:hover::before,
+        nav a.active::before {
+            width: 80%;
+        }
 
         nav a.active,
-
         nav a:hover {
-
             color: #00E8F8;
-
-            border-radius: 1rem;
-
-            transition: all.3s ease-in-out;
-
+            background: rgba(0, 232, 248, 0.1);
         }
-
-
 
         #click {
-
             display: none;
-
         }
-
-
-
-        .menu i {
-
-            color: #00E8F8;
-
-        }
-
-
 
         .menu {
-
             display: none;
-
-        }
-
-
-
-        /* Nav */
-
-
-
-        section {
-
-            margin: 2rem 8.5rem;
-
-        }
-
-
-
-        /* Portfolio Section */
-        #portfolio {
-            padding: 3rem 0;
-            background-color: #1F252E;
-        }
-
-        #portfolio h2 {
-            font-size: 2rem;
             color: #00E8F8;
-            margin-bottom: 2rem;
-            text-align: center;
+            font-size: 1.5rem;
+            cursor: pointer;
         }
 
-        .SHADOW-intro {
-            text-align: center;
-            color: #fff;
+        /* Skills Section */
+        section {
+            margin: 0;
+            padding: 8rem 2rem 4rem;
+            min-height: 100vh;
+        }
+
+        #skills {
+            padding: 8rem 2rem 4rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        #skills h2 {
+            font-size: clamp(2rem, 5vw, 3rem);
+            color: #00E8F8;
             margin-bottom: 3rem;
+            text-align: center;
+            animation: fadeInDown 1s ease-out;
+            background: linear-gradient(135deg, #00E8F8, #00c2f8);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .skills-intro {
+            text-align: center;
+            color: rgba(255, 255, 255, 0.9);
+            margin-bottom: 4rem;
             max-width: 700px;
             margin-left: auto;
             margin-right: auto;
+            animation: fadeInUp 1s ease-out 0.2s both;
         }
 
-        .SHADOW-intro p {
-            color: #ccc;
-            line-height: 1.8;
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .skills-intro p {
+            color: rgba(255, 255, 255, 0.8);
+            line-height: 1.9;
             margin-top: 1rem;
+            font-size: 1.05rem;
         }
 
-        .filter-buttons {
+        .skill-stat {
             display: flex;
             justify-content: center;
+            gap: 3rem;
+            margin: 3rem 0;
             flex-wrap: wrap;
-            gap: 1rem;
-            margin-bottom: 3rem;
         }
 
-        .filter-btn {
-            background-color: rgba(0, 232, 248, 0.1);
+        .stat-box {
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 800;
             color: #00E8F8;
-            border: 1px solid #00E8F8;
-            padding: 0.5rem 1.5rem;
+            background: linear-gradient(135deg, #00E8F8, #00c2f8);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .stat-label {
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 0.9rem;
+            margin-top: 0.5rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .experience-badge {
+            display: inline-block;
+            background: rgba(0, 232, 248, 0.15);
+            color: #00E8F8;
+            padding: 0.3rem 0.8rem;
             border-radius: 20px;
-            cursor: pointer;
-            transition: all 0.3s ease;
+            font-size: 0.75rem;
             font-weight: 600;
+            margin-top: 0.5rem;
+            border: 1px solid rgba(0, 232, 248, 0.3);
         }
 
-        .filter-btn:hover,
-        .filter-btn.active {
-            background-color: #00E8F8;
-            color: #1F252E;
+        .skill-level {
+            color: #00E8F8;
+            font-size: 0.85rem;
+            font-weight: 500;
+            background: rgba(0, 232, 248, 0.1);
+            padding: 0.2rem 0.6rem;
+            border-radius: 12px;
+            border: 1px solid rgba(0, 232, 248, 0.3);
         }
 
-        .SHADOW-grid {
+        .skills-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 2rem;
             max-width: 1200px;
             margin: 0 auto;
         }
 
-        .SHADOW-item {
-            background-color: rgba(0, 232, 248, 0.1);
-            border-radius: 10px;
-            overflow: hidden;
+        .skill-category {
+            background: rgba(0, 232, 248, 0.08);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            padding: 2.5rem;
+            border-radius: 20px;
             border: 1px solid rgba(0, 232, 248, 0.2);
-            transition: all 0.3s ease;
-            cursor: pointer;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+            animation: fadeInScale 0.8s ease-out backwards;
         }
 
-        .SHADOW-item:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 20px rgba(0, 232, 248, 0.3);
+        .skill-category::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 4px;
+            height: 100%;
+            background: linear-gradient(180deg, #00E8F8, #00c2f8);
+            box-shadow: 0 0 20px rgba(0, 232, 248, 0.5);
+        }
+
+        .skill-category::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(0, 232, 248, 0.1), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .skill-category:hover::after {
+            left: 100%;
+        }
+
+        .skill-category:nth-child(1) { animation-delay: 0.3s; }
+        .skill-category:nth-child(2) { animation-delay: 0.4s; }
+        .skill-category:nth-child(3) { animation-delay: 0.5s; }
+        .skill-category:nth-child(4) { animation-delay: 0.6s; }
+
+        @keyframes fadeInScale {
+            from {
+                opacity: 0;
+                transform: scale(0.9) translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1) translateY(0);
+            }
+        }
+
+        .skill-category:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 15px 40px rgba(0, 232, 248, 0.4);
+            background: rgba(0, 232, 248, 0.12);
             border-color: #00E8F8;
         }
 
-        .SHADOW-image {
-            width: 100%;
-            height: 250px;
-            background: linear-gradient(135deg, rgba(0, 232, 248, 0.2), rgba(0, 194, 248, 0.1));
+        .skill-item {
+            margin-bottom: 1.8rem;
+            animation: fadeInLeft 0.6s ease-out backwards;
+        }
+
+        .skill-item:nth-child(2) { animation-delay: 0.1s; }
+        .skill-item:nth-child(3) { animation-delay: 0.2s; }
+        .skill-item:nth-child(4) { animation-delay: 0.3s; }
+        .skill-item:nth-child(5) { animation-delay: 0.4s; }
+
+        @keyframes fadeInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .skill-name {
             display: flex;
+            justify-content: space-between;
             align-items: center;
-            justify-content: center;
+            margin-bottom: 0.75rem;
+        }
+
+        .skill-name span {
+            color: #fff;
+            font-weight: 600;
+            font-size: 0.95rem;
+        }
+
+        .skill-level {
             color: #00E8F8;
-            font-size: 3rem;
-        }
-
-        .SHADOW-content {
-            padding: 1.5rem;
-        }
-
-        .SHADOW-content h3 {
-            color: #00E8F8;
-            font-size: 1.3rem;
-            margin-bottom: 0.5rem;
-        }
-
-        .SHADOW-content p {
-            color: #ccc;
-            font-size: 0.9rem;
-            line-height: 1.6;
-            margin-bottom: 1rem;
-        }
-
-        .SHADOW-tags {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.5rem;
-            margin-top: 1rem;
-        }
-
-        .tag {
-            background-color: rgba(0, 232, 248, 0.1);
-            color: #00E8F8;
+            font-size: 0.85rem;
+            font-weight: 500;
+            background: rgba(0, 232, 248, 0.1);
             padding: 0.2rem 0.6rem;
-            border-radius: 10px;
-            font-size: 0.75rem;
+            border-radius: 12px;
             border: 1px solid rgba(0, 232, 248, 0.3);
         }
 
-        .SHADOW-link {
-            display: inline-block;
+        .skill-category h3 {
             color: #00E8F8;
-            text-decoration: none;
-            margin-top: 1rem;
+            font-size: 1.6rem;
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
             font-weight: 600;
+        }
+
+        .skill-category h3 i {
+            font-size: 1.8rem;
+            filter: drop-shadow(0 0 10px rgba(0, 232, 248, 0.5));
+        }
+
+        .skill-bar {
+            width: 100%;
+            height: 10px;
+            background-color: rgba(0, 232, 248, 0.1);
+            border-radius: 10px;
+            overflow: hidden;
+            position: relative;
+            box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.2);
+        }
+
+        .skill-progress {
+            height: 100%;
+            background: linear-gradient(90deg, #00E8F8, #00c2f8, #00E8F8);
+            background-size: 200% 100%;
+            border-radius: 10px;
+            transition: width 1.5s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            box-shadow: 0 0 15px rgba(0, 232, 248, 0.5);
+            animation: shimmer 2s infinite;
+        }
+
+        @keyframes shimmer {
+            0% {
+                background-position: -200% 0;
+            }
+            100% {
+                background-position: 200% 0;
+            }
+        }
+
+        .skill-progress::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+            animation: shine 2s infinite;
+        }
+
+        @keyframes shine {
+            0% {
+                transform: translateX(-100%);
+            }
+            100% {
+                transform: translateX(100%);
+            }
+        }
+
+        .skill-tools {
+            margin-top: 2rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid rgba(0, 232, 248, 0.2);
+        }
+
+        .skill-tools strong {
+            color: #00E8F8;
+            font-size: 0.95rem;
+            display: block;
+            margin-bottom: 1rem;
+        }
+
+        .skill-tools p {
+            color: #888;
+            font-size: 0.85rem;
+            margin-top: 0.5rem;
+        }
+
+        .tools-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.6rem;
+            margin-top: 0.75rem;
+        }
+
+        .tool-badge {
+            background: rgba(0, 232, 248, 0.1);
+            color: #00E8F8;
+            padding: 0.4rem 1rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            border: 1px solid rgba(0, 232, 248, 0.3);
             transition: all 0.3s ease;
+            cursor: default;
+            animation: fadeInScale 0.5s ease-out backwards;
         }
 
-        .SHADOW-link:hover {
-            color: #fff;
+        .tool-badge:nth-child(1) { animation-delay: 0.1s; }
+        .tool-badge:nth-child(2) { animation-delay: 0.2s; }
+        .tool-badge:nth-child(3) { animation-delay: 0.3s; }
+        .tool-badge:nth-child(4) { animation-delay: 0.4s; }
+        .tool-badge:nth-child(5) { animation-delay: 0.5s; }
+
+        .tool-badge:hover {
+            background: rgba(0, 232, 248, 0.2);
+            border-color: #00E8F8;
+            transform: translateY(-2px) scale(1.05);
+            box-shadow: 0 4px 12px rgba(0, 232, 248, 0.3);
         }
 
+        /* Footer */
+        footer {
+            background: rgba(15, 20, 25, 0.8);
+            padding: 2rem;
+            text-align: center;
+            border-top: 1px solid rgba(0, 232, 248, 0.1);
+            margin-top: 4rem;
+        }
+
+        footer p {
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 0.9rem;
+        }
+
+        /* Responsive Design */
         @media only screen and (max-width: 768px) {
-            .SHADOW-grid {
-                grid-template-columns: 1fr;
+            header {
+                padding: 1rem;
             }
-            .filter-buttons {
-                gap: 0.5rem;
-            }
-            .filter-btn {
-                padding: 0.4rem 1rem;
-                font-size: 0.85rem;
-            }
-        }
-
-
-
-        @media only screen and (max-width:480px) {
 
             .menu {
-
                 display: block;
-
-                font-size: 1.5rem;
-
-                font-weight: bold;
-
-                color: rgb(10, 231, 228);
-
             }
-
-
-
-            header {
-
-                padding: 0.7rem 1rem;
-
-                align-items: center;
-
-                max-width: 100%;
-
-            }
-
-
 
             nav {
-
-                position: absolute;
-
-                display: grid;
-
-                top: 75px;
-
-                text-align: center;
-
-                background-color: #1F252E;
-
+                position: fixed;
+                top: 70px;
                 left: -100%;
-
-                z-index: 1;
-
+                flex-direction: column;
+                background: rgba(31, 37, 46, 0.95);
+                backdrop-filter: blur(10px);
                 width: 100%;
-
-            }
-
-
-
-            #click:checked~nav {
-
-                left: 0%;
-
+                padding: 2rem;
                 transition: all 0.3s ease;
-
+                box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
             }
 
-
+            #click:checked ~ nav {
+                left: 0;
+            }
 
             section {
-
-                margin: 1rem 1.5rem;
-
+                padding: 6rem 1.5rem 2rem;
             }
 
+            .skills-grid {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
 
-
+            .skill-category {
+                padding: 2rem 1.5rem;
+            }
         }
 
-    </style>
+        @media only screen and (max-width: 480px) {
+            .skill-category {
+                padding: 1.5rem 1rem;
+            }
 
+            .skill-category h3 {
+                font-size: 1.3rem;
+            }
+        }
+    </style>
 </head>
 
-
-
 <body>
-
     <header>
-
         <div class="SHADOW">
-
             <a href="index.html">SHADOW.</a>
-
         </div>
 
         <input type="checkbox" id="click">
-
         <label for="click" class="mainicon">
-
             <div class="menu">
-
                 <i class="bi bi-list"></i>
-
             </div>
-
         </label>
 
         <nav>
-
-            <a href="webpage.html">Home</a>
-
+            <a href="index.html">Home</a>
             <a href="about.html">About</a>
-
-            <a href="skills.html">Skills</a>
-
-            <a href="portfolio.html" class="active">Portfolio</a>
-
+            <a href="skills.html" class="active">Skills</a>
+            <a href="portfolio.html">Portfolio</a>
             <a href="contact.html">Contact</a>
-
         </nav>
-
     </header>
 
-
-
-    <!-- Portfolio Section -->
-    <section id="portfolio">
-        <h2>My Portfolio</h2>
+    <!-- Skills Section -->
+    <section id="skills">
+        <h2>My Skills & Expertise</h2>
         
-        <div class="portfolio-intro">
-            <p>Welcome to my collection of work! Here you'll find projects across photography, video editing, web development, and gaming. Each project represents a unique challenge and creative journey.</p>
+        <div class="skills-intro">
+            <p>A comprehensive overview of my technical skills and creative abilities across photography, video production, programming, and gaming. With years of dedicated practice, I've developed expertise in multiple domains while continuously expanding my knowledge.</p>
+            
+            <div class="skill-stat">
+                <div class="stat-box">
+                    <div class="stat-number">4+</div>
+                    <div class="stat-label">Skill Categories</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-number">15+</div>
+                    <div class="stat-label">Technical Skills</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-number">100%</div>
+                    <div class="stat-label">Dedication</div>
+                </div>
+            </div>
         </div>
 
-        <div class="filter-buttons">
-            <button class="filter-btn active" onclick="filterProjects('all')">All</button>
-            <button class="filter-btn" onclick="filterProjects('photography')">Photography</button>
-            <button class="filter-btn" onclick="filterProjects('video')">Video Editing</button>
-            <button class="filter-btn" onclick="filterProjects('web')">Web Development</button>
-            <button class="filter-btn" onclick="filterProjects('gaming')">Gaming</button>
-        </div>
-
-        <div class="portfolio-grid">
-            <!-- Photography Projects -->
-            <div class="portfolio-item" data-category="photography">
-                <div class="portfolio-image">
-                    <i class="bi bi-camera-fill"></i>
-                </div>
-                <div class="portfolio-content">
-                    <h3>Portrait Series - Urban Stories</h3>
-                    <p>A collection of portrait photographs capturing the essence of urban life and individual stories. Each image tells a unique narrative through composition and lighting.</p>
-                    <div class="portfolio-tags">
-                        <span class="tag">Portrait</span>
-                        <span class="tag">Urban</span>
-                        <span class="tag">B&W</span>
+        <div class="skills-grid">
+            <!-- Photography Skills -->
+            <div class="skill-category">
+                <h3><i class="bi bi-camera-fill"></i> Photography</h3>
+                <div class="experience-badge">3+ years experience</div>
+                
+                <div class="skill-item">
+                    <div class="skill-name">
+                        <span>Portrait Photography</span>
+                        <span class="skill-level">Expert</span>
                     </div>
-                    <a href="#" class="portfolio-link">View Project →</a>
+                    <div class="skill-bar">
+                        <div class="skill-progress" style="width: 100%;"></div>
+                    </div>
+                </div>
+
+                <div class="skill-item">
+                    <div class="skill-name">
+                        <span>Event Photography</span>
+                        <span class="skill-level">Advanced</span>
+                    </div>
+                    <div class="skill-bar">
+                        <div class="skill-progress" style="width: 90%;"></div>
+                    </div>
+                </div>
+
+                <div class="skill-item">
+                    <div class="skill-name">
+                        <span>Product Photography</span>
+                        <span class="skill-level">Intermediate</span>
+                    </div>
+                    <div class="skill-bar">
+                        <div class="skill-progress" style="width: 70%;"></div>
+                    </div>
+                </div>
+
+                <div class="skill-item">
+                    <div class="skill-name">
+                        <span>Street Photography</span>
+                        <span class="skill-level">Expert</span>
+                    </div>
+                    <div class="skill-bar">
+                        <div class="skill-progress" style="width: 100%;"></div>
+                    </div>
+                </div>
+
+                <div class="skill-tools">
+                    <strong style="color: #00E8F8;">Tools & Equipment:</strong>
+                    <div class="tools-list">
+                        <span class="tool-badge">DSLR Cameras</span>
+                        <span class="tool-badge">Lightroom</span>
+                        <span class="tool-badge">Photoshop</span>
+                        <span class="tool-badge">Lighting Setup</span>
+                    </div>
                 </div>
             </div>
 
-            <div class="portfolio-item" data-category="photography">
-                <div class="portfolio-image">
-                    <i class="bi bi-image-fill"></i>
-                </div>
-                <div class="portfolio-content">
-                    <h3>Event Photography - Wedding Collection</h3>
-                    <p>Complete wedding photography coverage capturing candid moments, ceremonies, and celebrations. Focus on natural lighting and authentic emotions.</p>
-                    <div class="portfolio-tags">
-                        <span class="tag">Wedding</span>
-                        <span class="tag">Event</span>
-                        <span class="tag">Candid</span>
+            <!-- Video Editing Skills -->
+            <div class="skill-category">
+                <h3><i class="bi bi-film"></i> Video Editing</h3>
+                <div class="experience-badge">2+ years experience</div>
+                
+                <div class="skill-item">
+                    <div class="skill-name">
+                        <span>Video Editing</span>
+                        <span class="skill-level">Expert</span>
                     </div>
-                    <a href="#" class="portfolio-link">View Project →</a>
+                    <div class="skill-bar">
+                        <div class="skill-progress" style="width: 100%;"></div>
+                    </div>
+                </div>
+
+                <div class="skill-item">
+                    <div class="skill-name">
+                        <span>Color Grading</span>
+                        <span class="skill-level">Expert</span>
+                    </div>
+                    <div class="skill-bar">
+                        <div class="skill-progress" style="width: 100%;"></div>
+                    </div>
+                </div>
+
+                <div class="skill-item">
+                    <div class="skill-name">
+                        <span>Motion Graphics</span>
+                        <span class="skill-level">Intermediate</span>
+                    </div>
+                    <div class="skill-bar">
+                        <div class="skill-progress" style="width: 70%;"></div>
+                    </div>
+                </div>
+
+                <div class="skill-item">
+                    <div class="skill-name">
+                        <span>Audio Editing</span>
+                        <span class="skill-level">Intermediate</span>
+                    </div>
+                    <div class="skill-bar">
+                        <div class="skill-progress" style="width: 80%;"></div>
+                    </div>
+                </div>
+
+                <div class="skill-tools">
+                    <strong style="color: #00E8F8;">Software:</strong>
+                    <div class="tools-list">
+                        <span class="tool-badge">Adobe Premiere Pro</span>
+                        <span class="tool-badge">After Effects</span>
+                        <span class="tool-badge">DaVinci Resolve</span>
+                        <span class="tool-badge">CapCut Pro</span>
+                    </div>
                 </div>
             </div>
 
-            <div class="portfolio-item" data-category="photography">
-                <div class="portfolio-image">
-                    <i class="bi bi-camera-reels-fill"></i>
-                </div>
-                <div class="portfolio-content">
-                    <h3>Product Photography - E-commerce</h3>
-                    <p>Professional product photography for online stores. Clean backgrounds, proper lighting, and attention to detail to showcase products effectively.</p>
-                    <div class="portfolio-tags">
-                        <span class="tag">Product</span>
-                        <span class="tag">E-commerce</span>
-                        <span class="tag">Studio</span>
+            <!-- Programming Skills -->
+            <div class="skill-category">
+                <h3><i class="bi bi-code-slash"></i> Programming</h3>
+                <div class="experience-badge">2+ years experience</div>
+                
+                <div class="skill-item">
+                    <div class="skill-name">
+                        <span>Web Development</span>
+                        <span class="skill-level">Intermediate</span>
                     </div>
-                    <a href="#" class="portfolio-link">View Project →</a>
+                    <div class="skill-bar">
+                        <div class="skill-progress" style="width: 75%;"></div>
+                    </div>
+                </div>
+
+                <div class="skill-item">
+                    <div class="skill-name">
+                        <span>Frontend Development</span>
+                        <span class="skill-level">Intermediate</span>
+                    </div>
+                    <div class="skill-bar">
+                        <div class="skill-progress" style="width: 70%;"></div>
+                    </div>
+                </div>
+
+                <div class="skill-item">
+                    <div class="skill-name">
+                        <span>Python</span>
+                        <span class="skill-level">Intermediate</span>
+                    </div>
+                    <div class="skill-bar">
+                        <div class="skill-progress" style="width: 70%;"></div>
+                    </div>
+                </div>
+
+                <div class="skill-item">
+                    <div class="skill-name">
+                        <span>JavaScript</span>
+                        <span class="skill-level">Intermediate</span>
+                    </div>
+                    <div class="skill-bar">
+                        <div class="skill-progress" style="width: 65%;"></div>
+                    </div>
+                </div>
+
+                <div class="skill-tools">
+                    <strong style="color: #00E8F8;">Technologies:</strong>
+                    <div class="tools-list">
+                        <span class="tool-badge">HTML/CSS</span>
+                        <span class="tool-badge">JavaScript</span>
+                        <span class="tool-badge">Python</span>
+                        <span class="tool-badge">React</span>
+                        <span class="tool-badge">Git</span>
+                    </div>
                 </div>
             </div>
 
-            <!-- Video Editing Projects -->
-            <div class="portfolio-item" data-category="video">
-                <div class="portfolio-image">
-                    <i class="bi bi-film"></i>
-                </div>
-                <div class="portfolio-content">
-                    <h3>Music Video - Color Grading Project</h3>
-                    <p>Complete video editing and color grading for an independent music video. Created a cohesive visual style that matches the song's mood and energy.</p>
-                    <div class="portfolio-tags">
-                        <span class="tag">Music Video</span>
-                        <span class="tag">Color Grading</span>
-                        <span class="tag">Editing</span>
+            <!-- Gaming Skills -->
+            <div class="skill-category">
+                <h3><i class="bi bi-controller"></i> Gaming & Content</h3>
+                <div class="experience-badge">3+ years experience</div>
+                
+                <div class="skill-item">
+                    <div class="skill-name">
+                        <span>Game Analysis</span>
+                        <span class="skill-level">Advanced</span>
                     </div>
-                    <a href="#" class="portfolio-link">View Project →</a>
+                    <div class="skill-bar">
+                        <div class="skill-progress" style="width: 80%;"></div>
+                    </div>
                 </div>
-            </div>
 
-            <div class="portfolio-item" data-category="video">
-                <div class="portfolio-image">
-                    <i class="bi bi-play-circle-fill"></i>
-                </div>
-                <div class="portfolio-content">
-                    <h3>Corporate Video - Brand Story</h3>
-                    <p>Short-form corporate video telling a brand's story. Included motion graphics, transitions, and professional audio mixing for a polished final product.</p>
-                    <div class="portfolio-tags">
-                        <span class="tag">Corporate</span>
-                        <span class="tag">Motion Graphics</span>
-                        <span class="tag">Branding</span>
+                <div class="skill-item">
+                    <div class="skill-name">
+                        <span>Content Creation</span>
+                        <span class="skill-level">Intermediate</span>
                     </div>
-                    <a href="#" class="portfolio-link">View Project →</a>
+                    <div class="skill-bar">
+                        <div class="skill-progress" style="width: 70%;"></div>
+                    </div>
                 </div>
-            </div>
 
-            <div class="portfolio-item" data-category="video">
-                <div class="portfolio-image">
-                    <i class="bi bi-camera-video-fill"></i>
-                </div>
-                <div class="portfolio-content">
-                    <h3>Travel Vlog Series</h3>
-                    <p>Multi-episode travel vlog series with dynamic editing, transitions, and storytelling. Captured the essence of different locations through creative video techniques.</p>
-                    <div class="portfolio-tags">
-                        <span class="tag">Travel</span>
-                        <span class="tag">Vlog</span>
-                        <span class="tag">Storytelling</span>
+                <div class="skill-item">
+                    <div class="skill-name">
+                        <span>Streaming Setup</span>
+                        <span class="skill-level">Intermediate</span>
                     </div>
-                    <a href="#" class="portfolio-link">View Project →</a>
+                    <div class="skill-bar">
+                        <div class="skill-progress" style="width: 65%;"></div>
+                    </div>
                 </div>
-            </div>
 
-            <!-- Web Development Projects -->
-            <div class="portfolio-item" data-category="web">
-                <div class="portfolio-image">
-                    <i class="bi bi-code-square"></i>
-                </div>
-                <div class="portfolio-content">
-                    <h3>Personal Portfolio Website</h3>
-                    <p>This very website! A responsive portfolio site built with HTML, CSS, and JavaScript. Features modern design, smooth navigation, and mobile-first approach.</p>
-                    <div class="portfolio-tags">
-                        <span class="tag">HTML/CSS</span>
-                        <span class="tag">JavaScript</span>
-                        <span class="tag">Responsive</span>
+                <div class="skill-item">
+                    <div class="skill-name">
+                        <span>Game Mechanics Understanding</span>
+                        <span class="skill-level">Advanced</span>
                     </div>
-                    <a href="webpage.html" class="portfolio-link">View Project →</a>
+                    <div class="skill-bar">
+                        <div class="skill-progress" style="width: 85%;"></div>
+                    </div>
                 </div>
-            </div>
 
-            <div class="portfolio-item" data-category="web">
-                <div class="portfolio-image">
-                    <i class="bi bi-laptop"></i>
-                </div>
-                <div class="portfolio-content">
-                    <h3>E-commerce Landing Page</h3>
-                    <p>Modern landing page for an e-commerce brand. Focused on user experience, conversion optimization, and clean design principles.</p>
-                    <div class="portfolio-tags">
-                        <span class="tag">Landing Page</span>
-                        <span class="tag">UX/UI</span>
-                        <span class="tag">E-commerce</span>
+                <div class="skill-tools">
+                    <strong style="color: #00E8F8;">Platforms & Tools:</strong>
+                    <div class="tools-list">
+                        <span class="tool-badge">PC Gaming</span>
+                        <span class="tool-badge">OBS Studio</span>
+                        <span class="tool-badge">Twitch/YouTube</span>
+                        <span class="tool-badge">Game Design</span>
                     </div>
-                    <a href="#" class="portfolio-link">View Project →</a>
-                </div>
-            </div>
-
-            <!-- Gaming Projects -->
-            <div class="portfolio-item" data-category="gaming">
-                <div class="portfolio-image">
-                    <i class="bi bi-controller"></i>
-                </div>
-                <div class="portfolio-content">
-                    <h3>Gaming Content - Highlight Reels</h3>
-                    <p>Compilation of epic gaming moments edited into highlight reels. Fast-paced editing, music synchronization, and visual effects to create engaging content.</p>
-                    <div class="portfolio-tags">
-                        <span class="tag">Gaming</span>
-                        <span class="tag">Highlights</span>
-                        <span class="tag">Content</span>
-                    </div>
-                    <a href="#" class="portfolio-link">View Project →</a>
-                </div>
-            </div>
-
-            <div class="portfolio-item" data-category="gaming">
-                <div class="portfolio-image">
-                    <i class="bi bi-broadcast"></i>
-                </div>
-                <div class="portfolio-content">
-                    <h3>Streaming Setup & Overlays</h3>
-                    <p>Custom streaming overlays and setup design for gaming streams. Created branded graphics, alerts, and scene transitions for a professional streaming experience.</p>
-                    <div class="portfolio-tags">
-                        <span class="tag">Streaming</span>
-                        <span class="tag">Overlays</span>
-                        <span class="tag">Design</span>
-                    </div>
-                    <a href="#" class="portfolio-link">View Project →</a>
                 </div>
             </div>
         </div>
     </section>
 
+    <footer>
+        <p>&copy; 2025 Angshu's Editor Platform. All rights reserved. | Built with passion and creativity.</p>
+    </footer>
+
     <script>
-        function filterProjects(category) {
-            const items = document.querySelectorAll('.portfolio-item');
-            const buttons = document.querySelectorAll('.filter-btn');
-            
-            // Update active button
-            buttons.forEach(btn => btn.classList.remove('active'));
-            event.target.classList.add('active');
-            
-            // Filter items
-            items.forEach(item => {
-                if (category === 'all' || item.dataset.category === category) {
-                    item.style.display = 'block';
-                } else {
-                    item.style.display = 'none';
+        // Smooth scroll behavior
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
                 }
             });
-        }
+        });
+
+        // Header scroll effect
+        let lastScroll = 0;
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('header');
+            const currentScroll = window.pageYOffset;
+            
+            if (currentScroll > 100) {
+                header.style.background = 'rgba(31, 37, 46, 0.95)';
+            } else {
+                header.style.background = 'rgba(31, 37, 46, 0.7)';
+            }
+            
+            lastScroll = currentScroll;
+        });
+
+        // Animate skill bars on scroll
+        const observerOptions = {
+            threshold: 0.3,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const progressBars = entry.target.querySelectorAll('.skill-progress');
+                    progressBars.forEach(bar => {
+                        const width = bar.style.width;
+                        bar.style.width = '0%';
+                        setTimeout(() => {
+                            bar.style.width = width;
+                        }, 100);
+                    });
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+
+        // Observe all skill categories
+        document.querySelectorAll('.skill-category').forEach(category => {
+            observer.observe(category);
+        });
     </script>
-
-
-
 </body>
-
 </html>
+
 
 
 
