@@ -15,7 +15,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800&display=swap" rel="stylesheet">
 
-    <title>Portfolio - My Work</title>
+    <title>Portfolio - SHADOW</title>
 
     <style>
 
@@ -24,66 +24,99 @@
             margin: 0;
 
             padding: 0;
+            box-sizing: border-box;
 
         }
 
-
+        html {
+            scroll-behavior: smooth;
+        }
 
         body {
 
             font-family: 'Poppins', sans-serif;
 
-            max-height: 100vh;
-
-            background-color: #1F252E;
+            background: linear-gradient(135deg, #1F252E 0%, #0f1419 100%);
+            color: #fff;
+            overflow-x: hidden;
+            position: relative;
 
         }
 
+        /* Animated background particles */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(circle at 20% 50%, rgba(0, 232, 248, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 80%, rgba(0, 232, 248, 0.08) 0%, transparent 50%),
+                radial-gradient(circle at 40% 20%, rgba(0, 232, 248, 0.05) 0%, transparent 50%);
+            animation: backgroundShift 15s ease-in-out infinite;
+            z-index: -1;
+            pointer-events: none;
+        }
 
+        @keyframes backgroundShift {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.8; }
+        }
 
-        /*nav */
-
+        /* Header with glassmorphism */
         header {
 
-            padding: 1.7rem 1rem;
-
-            background-color: #fff;
-
+            padding: 1.2rem 2rem;
+            background: rgba(31, 37, 46, 0.7);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(0, 232, 248, 0.1);
             display: flex;
 
             justify-content: space-between;
 
-            max-width: 80%;
-
-            margin: auto;
-
             align-items: center;
-
-            background-color: transparent;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3);
 
         }
 
+        header:hover {
+            background: rgba(31, 37, 46, 0.85);
+            box-shadow: 0 8px 40px rgba(0, 232, 248, 0.2);
+        }
 
-
-        .logo {
-
-            font-size: 1.3rem;
-
+        .SHADOW a {
+            font-size: 1.5rem;
             font-weight: 800;
-
-        }
-
-
-
-        .logo a {
-
-            color: #fff;
-
+            color: #00E8F8;
             text-decoration: none;
-
+            background: linear-gradient(135deg, #00E8F8, #00c2f8);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            transition: all 0.3s ease;
         }
 
+        .SHADOW a:hover {
+            transform: scale(1.05);
+            text-shadow: 0 0 20px rgba(0, 232, 248, 0.5);
+        }
 
+        nav {
+
+            display: flex;
+
+            gap: 0.5rem;
+
+        }
 
         nav a {
 
@@ -91,33 +124,42 @@
 
             text-decoration: none;
 
-            font-size: .97rem;
+            font-size: 0.95rem;
+            font-weight: 500;
+            letter-spacing: 0.5px;
 
-            font-weight: 600;
-
-            letter-spacing: .7px;
-
-            padding: 1rem;
-
-            padding: 0.4rem 1rem;
+            padding: 0.6rem 1.2rem;
+            border-radius: 25px;
+            transition: all 0.3s ease;
+            position: relative;
 
         }
 
+        nav a::before {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(90deg, #00E8F8, #00c2f8);
+            transition: all 0.3s ease;
+            transform: translateX(-50%);
+        }
 
+        nav a:hover::before,
+        nav a.active::before {
+            width: 80%;
+        }
 
         nav a.active,
 
         nav a:hover {
 
             color: #00E8F8;
-
-            border-radius: 1rem;
-
-            transition: all.3s ease-in-out;
+            background: rgba(0, 232, 248, 0.1);
 
         }
-
-
 
         #click {
 
@@ -125,60 +167,72 @@
 
         }
 
-
-
-        .menu i {
-
-            color: #00E8F8;
-
-        }
-
-
-
         .menu {
 
             display: none;
-
-        }
-
-
-
-        /* Nav */
-
-
-
-        section {
-
-            margin: 2rem 8.5rem;
+            color: #00E8F8;
+            font-size: 1.5rem;
+            cursor: pointer;
 
         }
 
 
 
         /* Portfolio Section */
+        section {
+            margin: 0;
+            padding: 8rem 2rem 4rem;
+            min-height: 100vh;
+        }
+
         #portfolio {
-            padding: 3rem 0;
-            background: linear-gradient(135deg, #1F252E 0%, #0f1419 100%);
+            padding: 8rem 2rem 4rem;
+            max-width: 1200px;
+            margin: 0 auto;
         }
 
         #portfolio h2 {
             font-size: clamp(2rem, 5vw, 3rem);
             color: #00E8F8;
-            margin-bottom: 1rem;
+            margin-bottom: 3rem;
             text-align: center;
+            animation: fadeInDown 1s ease-out;
             background: linear-gradient(135deg, #00E8F8, #00c2f8);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
         }
 
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
         .portfolio-intro {
             text-align: center;
-            color: #fff;
+            color: rgba(255, 255, 255, 0.9);
             margin-bottom: 2rem;
             max-width: 700px;
             margin-left: auto;
             margin-right: auto;
+            animation: fadeInUp 1s ease-out 0.2s both;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
         .portfolio-intro p {
@@ -192,7 +246,7 @@
             display: flex;
             justify-content: center;
             gap: 3rem;
-            margin: 3rem 0;
+            margin: 3rem 0 2rem;
             flex-wrap: wrap;
         }
 
@@ -253,9 +307,10 @@
         .portfolio-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            gap: 2rem;
+            gap: 2.5rem;
             max-width: 1200px;
             margin: 0 auto;
+            perspective: 1200px;
         }
 
         .portfolio-item {
@@ -265,10 +320,51 @@
             border-radius: 15px;
             overflow: hidden;
             border: 1px solid rgba(0, 232, 248, 0.2);
-            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
             cursor: pointer;
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3), 0 2px 8px rgba(0, 232, 248, 0.1) inset;
             position: relative;
+            transform-style: preserve-3d;
+            transform: translateZ(0);
+            animation: fadeInScale 0.8s ease-out backwards;
+        }
+
+        .portfolio-item:nth-child(1) { animation-delay: 0.3s; }
+        .portfolio-item:nth-child(2) { animation-delay: 0.4s; }
+        .portfolio-item:nth-child(3) { animation-delay: 0.5s; }
+        .portfolio-item:nth-child(4) { animation-delay: 0.6s; }
+        .portfolio-item:nth-child(5) { animation-delay: 0.7s; }
+        .portfolio-item:nth-child(6) { animation-delay: 0.8s; }
+        .portfolio-item:nth-child(7) { animation-delay: 0.9s; }
+        .portfolio-item:nth-child(8) { animation-delay: 1s; }
+        .portfolio-item:nth-child(9) { animation-delay: 1.1s; }
+
+        @keyframes fadeInScale {
+            from {
+                opacity: 0;
+                transform: scale(0.9) translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1) translateY(0);
+            }
+        }
+
+        .portfolio-item::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.15), transparent 50%);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            pointer-events: none;
+        }
+
+        .portfolio-item:hover::after {
+            opacity: 1;
         }
 
         .portfolio-item::before {
@@ -289,21 +385,58 @@
         }
 
         .portfolio-item:hover {
-            transform: translateY(-10px) scale(1.02);
-            box-shadow: 0 15px 40px rgba(0, 232, 248, 0.4);
+            transform: translateY(-15px) translateZ(20px) scale(1.03) rotateX(5deg) rotateY(-2deg);
+            box-shadow: 0 25px 50px rgba(0, 232, 248, 0.5), 0 0 50px rgba(0, 232, 248, 0.2), 0 2px 8px rgba(0, 232, 248, 0.1) inset;
             border-color: #00E8F8;
-            background: rgba(0, 232, 248, 0.12);
+            background: rgba(0, 232, 248, 0.15);
         }
 
         .portfolio-image {
             width: 100%;
             height: 250px;
-            background: linear-gradient(135deg, rgba(0, 232, 248, 0.2), rgba(0, 194, 248, 0.1));
+            background: linear-gradient(135deg, rgba(0, 232, 248, 0.3), rgba(0, 194, 248, 0.1));
             display: flex;
             align-items: center;
             justify-content: center;
             color: #00E8F8;
             font-size: 3rem;
+            position: relative;
+            overflow: hidden;
+            transform-style: preserve-3d;
+        }
+
+        .portfolio-image::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(0, 232, 248, 0.1) 0%, transparent 70%);
+            animation: shimmer 4s ease-in-out infinite;
+        }
+
+        .portfolio-image::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(45deg, transparent 30%, rgba(255, 255, 255, 0.1) 50%, transparent 70%);
+            transform: translateX(-100%);
+        }
+
+        @keyframes shimmer {
+            0%, 100% {
+                transform: translate(-10%, -10%);
+            }
+            50% {
+                transform: translate(10%, 10%);
+            }
+        }
+
+        .portfolio-image i {
+            position: relative;
+            z-index: 2;
+            filter: drop-shadow(0 0 15px rgba(0, 232, 248, 0.5));
         }
 
         .portfolio-content {
@@ -342,104 +475,138 @@
             border-radius: 10px;
             font-size: 0.75rem;
             border: 1px solid rgba(0, 232, 248, 0.3);
+            transition: all 0.3s ease;
+            backdrop-filter: blur(4px);
+            animation: fadeInScale 0.5s ease-out backwards;
+        }
+
+        .tag:nth-child(1) { animation-delay: 0.1s; }
+        .tag:nth-child(2) { animation-delay: 0.2s; }
+        .tag:nth-child(3) { animation-delay: 0.3s; }
+
+        .tag:hover {
+            background: rgba(0, 232, 248, 0.2);
+            transform: scale(1.05) translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 232, 248, 0.3);
         }
 
         .portfolio-link {
-            display: inline-block;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
             color: #00E8F8;
             text-decoration: none;
             margin-top: 1rem;
             font-weight: 600;
-            transition: all 0.3s ease;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+        }
+
+        .portfolio-link::after {
+            content: '';
+            position: absolute;
+            bottom: -3px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: #00E8F8;
+            transition: width 0.3s ease;
         }
 
         .portfolio-link:hover {
             color: #fff;
+            transform: translateX(5px);
         }
 
+        .portfolio-link:hover::after {
+            width: 100%;
+        }
+
+        /* Footer */
+        footer {
+            background: rgba(15, 20, 25, 0.8);
+            padding: 2rem;
+            text-align: center;
+            border-top: 1px solid rgba(0, 232, 248, 0.1);
+            margin-top: 4rem;
+        }
+
+        footer p {
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 0.9rem;
+        }
+
+        /* Responsive Design */
         @media only screen and (max-width: 768px) {
-            .portfolio-grid {
-                grid-template-columns: 1fr;
+            header {
+                padding: 1rem;
             }
-            .filter-buttons {
-                gap: 0.5rem;
-            }
-            .filter-btn {
-                padding: 0.4rem 1rem;
-                font-size: 0.85rem;
-            }
-        }
-
-
-
-        @media only screen and (max-width:480px) {
 
             .menu {
-
                 display: block;
-
-                font-size: 1.5rem;
-
-                font-weight: bold;
-
-                color: rgb(10, 231, 228);
-
             }
-
-
-
-            header {
-
-                padding: 0.7rem 1rem;
-
-                align-items: center;
-
-                max-width: 100%;
-
-            }
-
-
 
             nav {
-
-                position: absolute;
-
-                display: grid;
-
-                top: 75px;
-
-                text-align: center;
-
-                background-color: #1F252E;
-
+                position: fixed;
+                top: 70px;
                 left: -100%;
-
-                z-index: 1;
-
+                flex-direction: column;
+                background: rgba(31, 37, 46, 0.95);
+                backdrop-filter: blur(10px);
                 width: 100%;
-
-            }
-
-
-
-            #click:checked~nav {
-
-                left: 0%;
-
+                padding: 2rem;
                 transition: all 0.3s ease;
-
+                box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
             }
 
-
+            #click:checked ~ nav {
+                left: 0;
+            }
 
             section {
-
-                margin: 1rem 1.5rem;
-
+                padding: 6rem 1.5rem 2rem;
             }
 
+            .portfolio-grid {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
 
+            .portfolio-item {
+                padding: 1.5rem 1rem;
+            }
+        }
 
+        @media only screen and (max-width: 480px) {
+            .portfolio-item {
+                padding: 1.5rem 1rem;
+            }
+
+            .portfolio-item h3 {
+                font-size: 1.1rem;
+            }
+        }
+
+        @keyframes fadeInScale {
+            from {
+                opacity: 0;
+                transform: scale(0.8) rotateX(-10deg);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1) rotateX(0deg);
+            }
+        }
+
+        @keyframes fadeOutScale {
+            from {
+                opacity: 1;
+                transform: scale(1);
+            }
+            to {
+                opacity: 0;
+                transform: scale(0.8);
+            }
         }
 
     </style>
@@ -452,9 +619,9 @@
 
     <header>
 
-        <div class="Portfolio">
+        <div class="SHADOW">
 
-            <a href="webpage.html">Portfolio.</a>
+            <a href="webpage.html">SHADOW.</a>
 
         </div>
 
@@ -472,7 +639,7 @@
 
         <nav>
 
-            <a href="webpage.html">Home</a>
+            <a href="index.html">Home</a>
 
             <a href="about.html">About</a>
 
@@ -686,7 +853,33 @@
         </div>
     </section>
 
+    <footer>
+        <p>&copy; 2025 Angshu's Editor Platform. All rights reserved. | Built with passion and creativity.</p>
+    </footer>
+
     <script>
+        // 3D Mouse parallax effect
+        document.addEventListener('mousemove', (e) => {
+            const portfolioItems = document.querySelectorAll('.portfolio-item');
+            const mouseX = (e.clientX / window.innerWidth) * 2 - 1;
+            const mouseY = (e.clientY / window.innerHeight) * 2 - 1;
+
+            portfolioItems.forEach(item => {
+                const rotateX = mouseY * 5;
+                const rotateY = mouseX * 5;
+                item.style.transform = `translateY(-15px) translateZ(20px) scale(1.03) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+            });
+        });
+
+        // Reset on mouse leave
+        document.addEventListener('mouseleave', () => {
+            const portfolioItems = document.querySelectorAll('.portfolio-item');
+            portfolioItems.forEach(item => {
+                item.style.transform = 'translateZ(0) scale(1)';
+            });
+        });
+
+        // Enhanced filter function with animation
         function filterProjects(category) {
             const items = document.querySelectorAll('.portfolio-item');
             const buttons = document.querySelectorAll('.filter-btn');
@@ -695,15 +888,48 @@
             buttons.forEach(btn => btn.classList.remove('active'));
             event.target.classList.add('active');
             
-            // Filter items
-            items.forEach(item => {
+            // Filter items with animation
+            items.forEach((item, index) => {
                 if (category === 'all' || item.dataset.category === category) {
                     item.style.display = 'block';
+                    setTimeout(() => {
+                        item.style.animation = `fadeInScale 0.6s ease-out ${index * 0.1}s both`;
+                    }, 10);
                 } else {
-                    item.style.display = 'none';
+                    item.style.animation = `fadeOutScale 0.3s ease-in forwards`;
+                    setTimeout(() => {
+                        item.style.display = 'none';
+                    }, 300);
                 }
             });
         }
+
+        // Add animation keyframes dynamically
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes fadeInScale {
+                from {
+                    opacity: 0;
+                    transform: scale(0.8) rotateX(-10deg);
+                }
+                to {
+                    opacity: 1;
+                    transform: scale(1) rotateX(0deg);
+                }
+            }
+
+            @keyframes fadeOutScale {
+                from {
+                    opacity: 1;
+                    transform: scale(1);
+                }
+                to {
+                    opacity: 0;
+                    transform: scale(0.8);
+                }
+            }
+        `;
+        document.head.appendChild(style);
     </script>
 
 
@@ -711,6 +937,9 @@
 </body>
 
 </html>
+
+
+
 
 
 
